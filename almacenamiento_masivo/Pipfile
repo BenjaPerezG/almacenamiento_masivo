@@ -8,6 +8,7 @@ verify_ssl = true
 [packages]
 django = "3.2.4"
 django-bootstrap4 = "*"
+boto3 = "*"
 
 [requires]
 python_version = "3.8"
