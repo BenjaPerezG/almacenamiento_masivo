@@ -1,11 +1,8 @@
-{% include 'navbar.html' %}
-<table>
-    <thead>
+{% include "base/includes/head.html" %}
 
-    </thead>
-    <tbody>
-        {% for object in object_list %}
-            <h1> {{ object.city }} </h1>
-        {% endfor %}
-    </tbody>
-</table>
+<div>
+    {% for object in object_list %}
+        <h1> {{ object.city }} </h1>
+        {{ caca }}
+    {% endfor %}
+</div>
