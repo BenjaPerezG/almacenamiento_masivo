@@ -1,5 +1,4 @@
 import boto3
-from concurrent.futures import ThreadPoolExecutor
 import json
 
 
