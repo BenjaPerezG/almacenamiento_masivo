@@ -6,7 +6,7 @@ def get_var_char_values(d):
     return [obj['VarCharValue'] for obj in d['Data']]
 
 
-def run_api():
+def run_api(query_string):
     aws_access_key_id = 'AKIA4UBERADCUIK37A74'
     aws_secret_access_key = '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'
 
@@ -18,7 +18,7 @@ def run_api():
     )
 
     athena_job_query = athena.start_query_execution(
-        QueryString='SELECT * FROM listing_data limit 5;',
+        QueryString=query_string,
         QueryExecutionContext={
             'Database': 'grupo3_db'
         },
@@ -43,9 +43,6 @@ def run_api():
     header, *rows = response['ResultSet']['Rows']
     header = get_var_char_values(header)
     result = [dict(zip(header, get_var_char_values(row))) for row in rows]
-
-    print(json.dumps(result, indent=2))
-    """for table in response['ResultSet']['Rows']:
-        for row in table['Data']:
-            print(row)
-        print()"""
+    json_data = json.dumps(result, indent=2)
+    print(json_data)
+    return json_data

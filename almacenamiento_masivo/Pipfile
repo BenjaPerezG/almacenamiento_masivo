@@ -9,6 +9,7 @@ verify_ssl = true
 django = "3.2.4"
 django-bootstrap4 = "*"
 boto3 = "*"
+django-npm = "*"
 
 [requires]
 python_version = "3.8"

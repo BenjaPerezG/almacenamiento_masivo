@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import npm
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,8 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap4',
 
-    'listings',
     'base',
+    'charts',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +129,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'base/static/'
 
 STATIC_DIR = os.path.join(BASE_DIR, 'base/static')
+
+STATICFILES_FINDERS = [npm.finders.NpmFinder]
+
+# npm configuration
+
+NPM_ROOT_PATH = os.path.join(BASE_DIR, 'package.json')

@@ -1,0 +1,40 @@
+{% include "base/includes/base.html" %}
+
+{% block body %}
+    <div>
+        aloooo teaaaam
+        <canvas id="chart"></canvas>
+    </div>
+{% endblock %}
+
+
+{% block static_files %}
+    <script>
+        const data = {
+            labels: [
+                'santiago',
+                'buenos aires',
+                'bogota'
+            ],
+            datasets = [{
+                label: 'Dataset',
+                data: [25, 30, 46],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(0, 150, 255)',
+                    'rgb(0, 255, 150)'
+                ]
+            }]
+        }
+        const config = {
+            type: 'polarArea',
+            data: data,
+            options: {}
+        }
+
+        var polarCart = new Chart(
+            document.getElementById('chart'),
+            config
+        );
+    </script>
+{% endblock %}
