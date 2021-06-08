@@ -133,4 +133,4 @@ STATICFILES_FINDERS = ['npm.finders.NpmFinder']
 
 # npm configuration
 
-NPM_ROOT_PATH = os.path.join(BASE_DIR, 'package.json')
+NPM_ROOT_PATH = os.path.join(BASE_DIR)
