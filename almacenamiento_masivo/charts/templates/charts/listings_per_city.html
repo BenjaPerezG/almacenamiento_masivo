@@ -5,36 +5,49 @@
         aloooo teaaaam
         <canvas id="chart"></canvas>
     </div>
-{% endblock %}
 
 
-{% block static_files %}
+    {% block static_files %}
     <script>
+        const DATA_COUNT = 5;
+        const NUMBER_CFG = {count: DATA_COUNT, min:0, max: 50};
+        labels = ['santiago','buenos aires','bogota'];
         const data = {
-            labels: [
-                'santiago',
-                'buenos aires',
-                'bogota'
-            ],
-            datasets = [{
+            labels:labels,
+            datasets: [{
                 label: 'Dataset',
                 data: [25, 30, 46],
                 backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(0, 150, 255)',
-                    'rgb(0, 255, 150)'
+                    "red",
+                    "blue",
+                    "yellow",
+                    "purple"
                 ]
             }]
         }
         const config = {
             type: 'polarArea',
             data: data,
-            options: {}
-        }
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Chart.js Polar Area Chart'
+                    }
+                }
+            },
+        };
+
+        
 
         var polarCart = new Chart(
             document.getElementById('chart'),
             config
         );
     </script>
+    {% endblock %}
 {% endblock %}
