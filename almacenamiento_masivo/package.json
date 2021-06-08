@@ -3,6 +3,7 @@
     "4": "0.0.0",
     "bootstrap": "^4.6.0",
     "bootstrap4": "0.0.1-security",
-    "chart.js": "^3.3.2"
+    "chart.js": "^3.3.2",
+    "node_modules": "0,0,0"
   }
 }

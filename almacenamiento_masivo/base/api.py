@@ -1,5 +1,7 @@
 import boto3
 import json
+import os
+from dotenv import load_dotenv
 
 
 def get_var_char_values(d):
@@ -7,8 +9,8 @@ def get_var_char_values(d):
 
 
 def run_api(query_string):
-    aws_access_key_id = 'AKIA4UBERADCUIK37A74'
-    aws_secret_access_key = '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'
+    aws_access_key_id = os.getenv('Aws_Access_Key_Id')
+    aws_secret_access_key = os.getenv('Aws_Secret_Access_Key')
 
     athena = boto3.client(
         'athena',
