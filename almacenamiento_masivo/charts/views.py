@@ -31,7 +31,7 @@ class AvailabilityPerMonth(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        result = run_api('SELECT date, disponibles, -(ocupados) as ocupados FROM availability_per_month')
+        result = run_api('SELECT date, disponibles, ocupados FROM availability_per_month')
         data = json.loads(result)
         for dict in data:
             print(dict)
