@@ -12,6 +12,7 @@ boto3 = "*"
 django-npm = "*"
 django-environ = "*"
 gunicorn = "*"
+django-on-heroku = "*"
 
 [requires]
 python_version = "3.8"
