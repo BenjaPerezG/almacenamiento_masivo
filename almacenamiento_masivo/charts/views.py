@@ -74,3 +74,19 @@ class MinimumNightsPerCity(TemplateView):
         # llamada a api con query y devuelta de json
         context['json'] = json.dumps(data, indent=4)
         return context
+
+class AveragePricePerCity(TemplateView):
+    template_name = 'charts/average_price_per_city.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        result = run_api('SELECT * FROM grupo3_db.averageprice_percity')
+        data = json.loads(result)
+        print(data)
+        for dict in data:
+            dict['city'] = cities[dict['city']]
+            dict['data'] = dict.pop('average_price')
+        context['json'] = json.dumps(data, indent=4)
+        return context
+

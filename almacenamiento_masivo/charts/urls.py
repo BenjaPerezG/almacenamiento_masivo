@@ -22,5 +22,10 @@ urlpatterns = [
         'minimum_nights_per_city/',
         views.MinimumNightsPerCity.as_view(),
         name='minimum_nights_per_city'
+    ),
+    path(
+        'average_price_per_city/',
+        views.AveragePricePerCity.as_view(),
+        name='average_price_per_city'
     )
 ]
