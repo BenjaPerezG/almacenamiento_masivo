@@ -1,22 +1,20 @@
 import boto3
 import json
 import os
+from django.conf import settings
 
-env = environ.Env()
-environ.Env.read_env()
-print(env('AWS_ACCESS_KEY_ID'))
 
 def get_var_char_values(d):
     return [obj['VarCharValue'] for obj in d['Data']]
 
 
 def run_api(query_string):
-    aws_access_key_id = os.getenv(Aws_Access_Key_Id)
-    aws_secret_access_key = os.getenv(Aws_Secret_Access_Key)
+    aws_access_key_id = settings.AWS_ACCESS_KEY_ID
+    aws_secret_access_key = settings.AWS_SECRET_ACCESS_KEY
 
     athena = boto3.client(
         'athena',
-        region_name='nope',
+        region_name=settings.REGION,
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
     )
@@ -48,7 +46,4 @@ def run_api(query_string):
     header = get_var_char_values(header)
     result = [dict(zip(header, get_var_char_values(row))) for row in rows]
     json_data = json.dumps(result, indent=2)
-    print(json_data)
     return json_data
-
-

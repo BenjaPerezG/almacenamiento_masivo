@@ -1,11 +1,13 @@
 {% include "base/includes/base.html" %}
 
 {% block body %}
-    <div>
-        aloooo teaaaam
+<div class="row1">
+    <div class="col-lg-5">
         <canvas id="chart"></canvas>
     </div>
+</div>
 
+<p hidden id="data">{{ json }}</p>
 
     {% block static_files %}
     <script>

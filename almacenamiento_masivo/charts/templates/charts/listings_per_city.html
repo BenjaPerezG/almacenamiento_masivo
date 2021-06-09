@@ -14,13 +14,16 @@
         var json_data = JSON.parse(document.getElementById("data").textContent);
         const DATA_COUNT = 5;
         const NUMBER_CFG = {count: DATA_COUNT, min:0, max: 50};
-        labels = Object.keys(json_data);
+
+        var cities= [];
         var dataList = [];
-        labels.forEach(element => {
-            dataList.push(json_data[element]);
+        json_data.forEach(element => {
+            cities.push(element.city.toUpperCase());
+            dataList.push(element.data);
         });
+
         const data = {
-            labels:labels,
+            labels:cities,
             datasets: [{
                 label: 'Dataset',
                 data: dataList,
@@ -28,7 +31,8 @@
                     "red",
                     "blue",
                     "yellow",
-                    "purple"
+                    "purple",
+                    "rgb(50,255,200)"
                 ]
             }]
         }
