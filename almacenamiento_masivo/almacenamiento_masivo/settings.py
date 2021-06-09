@@ -125,9 +125,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = 'base/static/'
+STATIC_ROOT = 'almacenamiento_masivo/static/'
 
-STATIC_DIR = os.path.join(BASE_DIR, 'base/static')
+STATIC_DIR = os.path.join(BASE_DIR, 'almacenamiento_masivo/static')
 
 STATICFILES_FINDERS = ['npm.finders.NpmFinder']
 
