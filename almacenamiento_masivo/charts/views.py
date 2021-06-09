@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.generic import TemplateView
 import json
 from base.api import run_api
@@ -55,6 +54,7 @@ class RoomTypePerCity(TemplateView):
         # llamada a api con query y devuelta de json
         context['json'] = json.dumps(data, indent=4)
         return context
+
 
 class MinimumNightsPerCity(TemplateView):
     template_name = 'charts/minimum_nights_per_city.html'
