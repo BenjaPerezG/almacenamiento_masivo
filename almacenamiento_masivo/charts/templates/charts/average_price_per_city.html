@@ -38,73 +38,41 @@
 
         var labels = [];
         var datasets = [];
-
-        var entireHomeData = [];
-        var privateRoomData = [];
-        var hotelRoomData = [];
-        var sharedRoomData = [];
+        var dataOfdatasets= [];
 
         json_data.forEach(element => {
             labels.push(element.city);
-            entireHomeData.push(element.Entire_home);
-            privateRoomData.push(element.Private_room);
-            hotelRoomData.push(element.Hotel_room);
-            sharedRoomData.push(element.Shared_room);
+            dataOfdatasets.push(element.data);
         });
 
         datasets.push({
-            label: 'Entire home',
-            data: entireHomeData,
-            backgroundColor: border_colors[0]
+            label: 'Average price',
+            data: dataOfdatasets,
+            borderColor : 'rgb(0, 230 , 200)',
+            backgroundColor: 'rgba(255, 100, 0, 0.2)'
         });
-        datasets.push({
-            label: 'Private room',
-            data: privateRoomData,
-            backgroundColor: border_colors[1]
-        });
-        datasets.push({
-            label: 'Hotel room',
-            data: hotelRoomData,
-            backgroundColor: border_colors[2]
-        });
-        datasets.push({
-            label: 'Shared room',
-            data: sharedRoomData,
-            backgroundColor: border_colors[3]
-        });
-
+        
         const data = {
             labels: labels,
             datasets: datasets
         };
 
         const config = {
-            type: 'bar',
+            type: 'radar',
             data: data,
             options: {
                 responsive: true,
                 plugins: {
-                    legend: {
-                    position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        text: 'Room type per city',
-                        font: {
+                title: {
+                    display: true,
+                    text: 'Average price per city',
+                    font: {
                             size: 25
                         }
-                    },
-                },
-                scales: {
-                    x: {
-                        stacked: true,
-                    },
-                    y: {
-                        stacked: true
-                    }
+                }
                 }
             },
-        };
+            };
 
         var roomChart = new Chart(
             document.getElementById('chart'),

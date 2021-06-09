@@ -26,6 +26,9 @@
                         <a class="nav-link" href="{% url 'listings_per_city' %}">Listings per city</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'average_price_per_city' %}">Average price per city</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'availability_per_month' %}">Availability per month</a>
                     </li>
                     <li class="nav-item">
@@ -33,7 +36,10 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'minimum_nights_per_city' %}">Minimum Nights per city</a>
-                    </li>      
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'occupancy_rate_per_city' %}">Occupancy Rate per city</a>
+                    </li>       
                 </ul>
             </nav>
         {% endblock %}

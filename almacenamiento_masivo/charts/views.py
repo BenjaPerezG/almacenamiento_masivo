@@ -23,6 +23,26 @@ class ListingsPerCityView(TemplateView):
         context['json'] = json.dumps(data, indent=4)
         return context
 
+class AveragePricePerCity(TemplateView):
+    template_name = 'charts/average_price_per_city.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        result = run_api('select * from grupo3_db.averageprice_percity')
+        data = json.loads(result)
+        for dict in data:
+            dict['county'] = countries[dict['city']]
+            dict['city'] = cities[dict['city']]
+            dict['data'] = dict.pop('average_price')
+
+        print(data)
+
+        # llamada a api con query y devuelta de json
+        context['json'] = json.dumps(data, indent=4)
+        return context
+
+
 
 class AvailabilityPerMonth(TemplateView):
     template_name = 'charts/availability_per_month.html'
@@ -68,6 +88,25 @@ class MinimumNightsPerCity(TemplateView):
             dict['county'] = countries[dict['city']]
             dict['city'] = cities[dict['city']]
             dict['data'] = dict.pop('minimum_nights_average')
+
+        print(data)
+
+        # llamada a api con query y devuelta de json
+        context['json'] = json.dumps(data, indent=4)
+        return context
+
+class OccupancyRatePerCity(TemplateView):
+    template_name = 'charts/occupancy_rate_per_city.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        result = run_api('select * from occupancy_rate_bycity')
+        data = json.loads(result)
+        for dict in data:
+            dict['county'] = countries[dict['city']]
+            dict['city'] = cities[dict['city']]
+            dict['data'] = dict.pop('tasa_ocupacion')
 
         print(data)
 
