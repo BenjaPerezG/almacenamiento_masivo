@@ -11,6 +11,7 @@ django-bootstrap4 = "*"
 boto3 = "*"
 django-npm = "*"
 django-environ = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"
