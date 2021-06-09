@@ -11,21 +11,72 @@
 
     {% block static_files %}
     <script>
+        var json_data = JSON.parse(document.getElementById("data").textContent);
         const DATA_COUNT = 5;
         const NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
+        
+        var datasets = [];
+        var border_colors = [
+            'rgb(200, 80, 150)',
+            'rgb(0, 100, 150)',
+            'rgb(255, 100, 0)',
+            'rgb(200, 255, 0)',
+            'rgb(100, 100, 150)',
+            'rgb(100, 80, 255)'
+        ];
+        var background_colors = [
+            'rgba(200, 80, 150 0.2)',
+            'rgba(0, 100, 150, 0.2)',
+            'rgba(255, 100, 0, 0.2)',
+            'rgba(200, 255, 0, 0.2)',
+            'rgba(100, 100, 150, 0.2)',
+            'rgba(100, 80, 255, 0.2)'
+        ];
+
+        var labels = [];
+        var datasets = [];
+
+        var entireHomeData = [];
+        var privateRoomData = [];
+        var hotelRoomData = [];
+        var sharedRoomData = [];
+
+        json_data.forEach(element => {
+            labels.push(element.city);
+            entireHomeData.push(element.Entire_home);
+            privateRoomData.push(element.Private_room);
+            hotelRoomData.push(element.Hotel_room);
+            sharedRoomData.push(element.Shared_room);
+        });
+
+        datasets.push({
+            label: 'Entire home',
+            data: entireHomeData,
+            backgroundColor: border_colors[0]
+        });
+        datasets.push({
+            label: 'Private room',
+            data: privateRoomData,
+            backgroundColor: border_colors[1]
+        });
+        datasets.push({
+            label: 'Hotel room',
+            data: hotelRoomData,
+            backgroundColor: border_colors[2]
+        });
+        datasets.push({
+            label: 'Shared room',
+            data: sharedRoomData,
+            backgroundColor: border_colors[3]
+        });
 
         const data = {
-        labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
-            datasets: [
-            {
-            label: 'Dataset 1',
-            data: [60, 80, 30, 20, 70],
-            backgroundColor: ["red","orange","yellow","green","blue"],
-            }] 
+            labels: labels,
+            datasets: datasets
         };
 
         const config = {
-            type: 'pie',
+            type: 'bar',
             data: data,
             options: {
                 responsive: true,
@@ -35,7 +86,15 @@
                     },
                     title: {
                         display: true,
-                        text: 'Chart.js Pie Chart'
+                        text: 'Room type per city'
+                    },
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                    },
+                    y: {
+                        stacked: true
                     }
                 }
             },

@@ -11,12 +11,22 @@
 
     {% block static_files %}
     <script>
+        var border_colors = [
+            'rgb(200, 80, 150)',
+            'rgb(0, 100, 150)',
+            'rgb(255, 100, 0)',
+            'rgb(200, 255, 0)',
+            'rgb(100, 100, 150)',
+            'rgb(100, 80, 255)'
+        ];
+
         var json_data = JSON.parse(document.getElementById("data").textContent);
         const DATA_COUNT = 5;
         const NUMBER_CFG = {count: DATA_COUNT, min:0, max: 50};
 
         var cities= [];
         var dataList = [];
+
         json_data.forEach(element => {
             cities.push(element.city.toUpperCase());
             dataList.push(element.data);
@@ -27,13 +37,7 @@
             datasets: [{
                 label: 'Dataset',
                 data: dataList,
-                backgroundColor: [
-                    "red",
-                    "blue",
-                    "yellow",
-                    "purple",
-                    "rgb(50,255,200)"
-                ]
+                backgroundColor: border_colors,
             }]
         }
         const config = {
@@ -47,7 +51,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'Chart.js Polar Area Chart'
+                        text: 'Listings per city'
                     }
                 }
             },

@@ -31,14 +31,10 @@ class AvailabilityPerMonth(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        result = run_api('SELECT * from grupo3_db.totallistingsbycity')
+        result = run_api('SELECT date, disponibles, -(ocupados) as ocupados FROM availability_per_month')
         data = json.loads(result)
         for dict in data:
-            dict['county'] = countries[dict['city']]
-            dict['city'] = cities[dict['city']]
-            dict['data'] = dict.pop('totalAlojamientos')
-
-        print(data)
+            print(dict)
 
         # llamada a api con query y devuelta de json
         context['json'] = json.dumps(data, indent=4)
@@ -51,14 +47,10 @@ class RoomTypePerCity(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        result = run_api('SELECT * from grupo3_db.totallistingsbycity')
+        result = run_api('SELECT * from grupo3_db.type_room_per_city')
         data = json.loads(result)
         for dict in data:
-            dict['county'] = countries[dict['city']]
             dict['city'] = cities[dict['city']]
-            dict['data'] = dict.pop('totalAlojamientos')
-
-        print(data)
 
         # llamada a api con query y devuelta de json
         context['json'] = json.dumps(data, indent=4)
