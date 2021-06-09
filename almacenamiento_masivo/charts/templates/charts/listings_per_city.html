@@ -1,22 +1,29 @@
 {% include "base/includes/base.html" %}
 
 {% block body %}
-    <div>
-        aloooo teaaaam
-        <canvas id="chart"></canvas>
+    <div class="row1">
+        <div class="col-lg-5">
+            <canvas id="chart"></canvas>
+        </div>
     </div>
 
+    <p hidden id="data">{{ json }}</p>
 
     {% block static_files %}
     <script>
+        var json_data = JSON.parse(document.getElementById("data").textContent);
         const DATA_COUNT = 5;
         const NUMBER_CFG = {count: DATA_COUNT, min:0, max: 50};
-        labels = ['santiago','buenos aires','bogota'];
+        labels = Object.keys(json_data);
+        var dataList = [];
+        labels.forEach(element => {
+            dataList.push(json_data[element]);
+        });
         const data = {
             labels:labels,
             datasets: [{
                 label: 'Dataset',
-                data: [25, 30, 46],
+                data: dataList,
                 backgroundColor: [
                     "red",
                     "blue",
