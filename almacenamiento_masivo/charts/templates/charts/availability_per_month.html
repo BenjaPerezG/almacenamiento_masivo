@@ -11,23 +11,32 @@
 
     {% block static_files %}
     <script>
-        const DATA_COUNT = 7;
-        const NUMBER_CFG = {count: DATA_COUNT, min: -100, max: 100};
-        labels = ['1','2','3','4','5'];
+        var json_data = JSON.parse(document.getElementById("data").textContent);
+        
+        var labels = [];
+        var disponibles = [];
+        var ocupados = [];
+
+        json_data.forEach(element => {
+            labels.push(element.date);
+            disponibles.push(element.disponibles);
+            ocupados.push(element.ocupados);
+        });
+
         const data = {
         labels: labels,
         datasets: [
             {
                 label: 'Available',
-                data: [3,14,25,10,30],
-                borderColor: 'red',
-                backgroundColor: 'red',
+                data: disponibles,
+                borderColor: 'rgb(0, 100, 150)',
+                backgroundColor: 'rgba(0, 100, 150, 0.9)',
             },
             {
                 label: 'Occuped',
-                data: [-10,-4,-20,-15,-25],
-                borderColor: 'blue',
-                backgroundColor: 'blue',
+                data: ocupados,
+                borderColor: 'rgb(255, 50, 50)',
+                backgroundColor: 'rgba(255, 50, 50, 0.9)',
                 }     
             ]
         };
@@ -42,7 +51,7 @@
                     },
                     title: {
                     display: true,
-                    text: 'Availability per Month'
+                    text: 'Availability per Month (world-wide)'
                     }
                 }
             },
