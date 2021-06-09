@@ -55,3 +55,22 @@ class RoomTypePerCity(TemplateView):
         # llamada a api con query y devuelta de json
         context['json'] = json.dumps(data, indent=4)
         return context
+
+class MinimumNightsPerCity(TemplateView):
+    template_name = 'charts/minimum_nights_per_city.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        result = run_api('select * from grupo3_db.average_min_nights order by minimum_nights_average desc')
+        data = json.loads(result)
+        for dict in data:
+            dict['county'] = countries[dict['city']]
+            dict['city'] = cities[dict['city']]
+            dict['data'] = dict.pop('minimum_nights_average')
+
+        print(data)
+
+        # llamada a api con query y devuelta de json
+        context['json'] = json.dumps(data, indent=4)
+        return context

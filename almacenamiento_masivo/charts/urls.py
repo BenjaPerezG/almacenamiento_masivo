@@ -18,4 +18,9 @@ urlpatterns = [
         views.RoomTypePerCity.as_view(),
         name='room_type_per_city'
     ),
+    path(
+        'minimum_nights_per_city/',
+        views.MinimumNightsPerCity.as_view(),
+        name='minimum_nights_per_city'
+    )
 ]
