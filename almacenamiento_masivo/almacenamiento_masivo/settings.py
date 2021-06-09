@@ -127,7 +127,7 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = 'almacenamiento_masivo/static/'
 
-STATIC_DIR = os.path.join(BASE_DIR, 'almacenamiento_masivo/static')
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_FINDERS = ['npm.finders.NpmFinder']
 
