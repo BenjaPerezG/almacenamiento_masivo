@@ -133,11 +133,13 @@
     function RemoveData(){
             var chart = roomChart
             var removeLabel = document.getElementById("cities").value;          
-            var removeindex = labels.indexOf(removeLabel);
-            chart.data.labels.splice(removeindex, 1); // remove the label first
-            
+            var removeindex = chart.data.labels.indexOf(removeLabel);
+            var label_pop = chart.data.labels.splice(removeindex,1)
+            droped_label.push(label_pop[0]); // remove the label first       
             chart.data.datasets.forEach(dataset => {
-            dataset.data.splice(removeindex, 1);
+                var poped = (dataset.data.splice(removeindex, 1))
+                droped_data.push(poped[0])
+                console.log(dataset.data)
             });
 
                 chart.update();
