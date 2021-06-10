@@ -87,29 +87,31 @@
     </script>
     {% endblock %}
 
-    <div>
+    <div class="col-sm-3">
         <form>
-            <label >Remove a City:</label>
-            <select name="cities" id="cities">
-                <script>
-                    var options = "";
-                    labels.forEach(label =>{
-                        options += "<option id="+'"'+label+'"'+" value="+'"'+label+'"'+">"+label+"</option>";
-                    });
-                    document.getElementById("cities").innerHTML=options;
-                </script>
-            </select>
-            <br><br>
-            <button type="button" value="Remove" onclick=RemoveData()>Remove city</button>
-          </form>
-    </div> 
-    <div>
+            <div class="form-group">
+                <label >Remove a City:</label>
+                <select class="form-control" name="cities" id="cities">
+                    <script>
+                        var options = "";
+                        labels.forEach(label =>{
+                            options += "<option id="+'"'+label+'"'+" value="+'"'+label+'"'+">"+label+"</option>";
+                        });
+                        document.getElementById("cities").innerHTML=options;
+                    </script>
+                </select>
+                <br>
+                <button class="btn btn-secondary" type="button" value="Remove" onclick=RemoveData()>Remove city</button>
+            </div>
+        </form>
         <form>
-            <label>Add a City:</label>
-            <select name="addcities" id="addcities">
-            </select>
-            <br><br>
-            <button type="button" value="Add" onclick=AddData()>Add city</button>
+            <div class="form-group">
+                <label>Add a City:</label>
+                <select class="from-control" name="addcities" id="addcities">
+                </select>
+                <br>
+                <button class="btn btn-secondary" type="button" value="Add" onclick=AddData()>Add city</button>
+            </div>
         </form>
     </div>
     
@@ -149,13 +151,13 @@
                 });
                 chart.update();
                 var selectobject = document.getElementById("addcities")
-                    for (var i=0; i<selectobject.length; i++) {
-                        if (selectobject.options[i].value == addLabel){
-                                var setoption = selectobject.options[i]
-                                selectobject.options.remove(i);
-                                document.getElementById("cities").options.add(setoption);}
-    
-                    }
+                for (var i=0; i<selectobject.length; i++) {
+                    if (selectobject.options[i].value == addLabel){
+                            var setoption = selectobject.options[i]
+                            selectobject.options.remove(i);
+                            document.getElementById("cities").options.add(setoption);}
+
+                }
         }    
     </script>    
 {% endblock %}

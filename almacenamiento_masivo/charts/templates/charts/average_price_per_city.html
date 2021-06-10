@@ -106,31 +106,33 @@
         
     </script>
     {% endblock %}
-<div>
-    <form>
-        <label >Remove a City:</label>
-        <select name="cities" id="cities">
-            <script>
-                var options = "";
-                labels.forEach(label =>{
-                    options += "<option id="+'"'+label+'"'+" value="+'"'+label+'"'+">"+label+"</option>";
-                });
-                document.getElementById("cities").innerHTML=options;
-            </script>
-        </select>
-        <br><br>
-        <button type="button" value="Remove" onclick=RemoveData()>Remove city</button>
-      </form>
-</div> 
-<div>
-    <form>
-        <label>Add a City:</label>
-        <select name="addcities" id="addcities">
-        </select>
-        <br><br>
-        <button type="button" value="Add" onclick=AddData()>Add city</button>
-    </form>
-</div>
+    <div class="col-sm-3">
+        <form>
+            <div class="form-group">
+                <label >Remove a City:</label>
+                <select class="form-control" name="cities" id="cities">
+                    <script>
+                        var options = "";
+                        labels.forEach(label =>{
+                            options += "<option id="+'"'+label+'"'+" value="+'"'+label+'"'+">"+label+"</option>";
+                        });
+                        document.getElementById("cities").innerHTML=options;
+                    </script>
+                </select>
+                <br>
+                <button class="btn btn-secondary" type="button" value="Remove" onclick=RemoveData()>Remove city</button>
+            </div>
+        </form>
+        <form>
+            <div class="form-group">
+                <label>Add a City:</label>
+                <select class="from-control" name="addcities" id="addcities">
+                </select>
+                <br>
+                <button class="btn btn-secondary" type="button" value="Add" onclick=AddData()>Add city</button>
+            </div>
+        </form>
+    </div>
 
 <script>
     function RemoveData(){
