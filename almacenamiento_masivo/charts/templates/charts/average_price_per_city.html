@@ -12,6 +12,8 @@
     {% block static_files %}
     <script>
         var json_data = JSON.parse(document.getElementById("data").textContent);
+        var droped_data = [];
+        var droped_label = [];
         
         var datasets = [];
         var border_colors = [
@@ -72,13 +74,102 @@
                 }
                 }
             },
-            };
+        };
+
+        const actions = [ 
+        {
+            name: 'Add Data',
+            handler(chart) {
+            const data = chart.data;
+                if (data.datasets.length > 0) {
+                    data.labels = Utils.months({count: data.labels.length + 1});
+
+                    for (var index = 0; index < data.datasets.length; ++index) {
+                    data.datasets[index].data.push(Utils.rand(0, 100));
+                    }
+
+                    chart.update();
+                }
+            }
+        },
+       
+    ];
 
         var roomChart = new Chart(
             document.getElementById('chart'),
             config
         );
-
+        
+        
     </script>
     {% endblock %}
+<div>
+    <form>
+        <label >Remove a City:</label>
+        <select name="cities" id="cities">
+            <script>
+                var options = "";
+                labels.forEach(label =>{
+                    options += "<option id="+'"'+label+'"'+" value="+'"'+label+'"'+">"+label+"</option>";
+                });
+                document.getElementById("cities").innerHTML=options;
+            </script>
+        </select>
+        <br><br>
+        <button type="button" value="Remove" onclick=RemoveData()>Remove city</button>
+      </form>
+</div> 
+<div>
+    <form>
+        <label>Add a City:</label>
+        <select name="addcities" id="addcities">
+        </select>
+        <br><br>
+        <button type="button" value="Add" onclick=AddData()>Add city</button>
+    </form>
+</div>
+
+<script>
+    function RemoveData(){
+            var chart = roomChart
+            var removeLabel = document.getElementById("cities").value;          
+            var removeindex = labels.indexOf(removeLabel);
+            chart.data.labels.splice(removeindex, 1); // remove the label first
+            
+            chart.data.datasets.forEach(dataset => {
+            dataset.data.splice(removeindex, 1);
+            });
+
+                chart.update();
+                var selectobject = document.getElementById("cities")
+                for (var i=0; i<selectobject.length; i++) {
+                    if (selectobject.options[i].value == removeLabel){
+                            var setoption = selectobject.options[i]
+                            selectobject.options.remove(i);
+                            document.getElementById("addcities").options.add(setoption);}
+
+                }
+        
+        };
+    function AddData(){
+            var chart = roomChart
+            var addLabel = document.getElementById("addcities").value;
+            var addindex = droped_label.indexOf(addLabel);
+            chart.data.labels.push(addLabel);
+            droped_label.splice(addindex, 1);
+            chart.data.datasets.forEach(dataset =>{
+                dataset.data.push(droped_data[addindex]);
+                droped_data.splice(addindex, 1);
+            });
+            chart.update();
+            var selectobject = document.getElementById("addcities")
+                for (var i=0; i<selectobject.length; i++) {
+                    if (selectobject.options[i].value == addLabel){
+                            var setoption = selectobject.options[i]
+                            selectobject.options.remove(i);
+                            document.getElementById("cities").options.add(setoption);}
+
+                }
+    }    
+</script>
 {% endblock %}
